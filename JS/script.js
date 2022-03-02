@@ -1,7 +1,8 @@
+// toggle spinner 
 const toggleSpinner = displayStyle => {
     document.getElementById('spinner').style.display = displayStyle;
 }
-
+// input phone data 
 const loadPhoneData = () => {
     const searchFeild = document.getElementById('input-field');
     const searchText = searchFeild.value;
@@ -24,7 +25,7 @@ const loadPhoneData = () => {
     .then(res => res.json())
     .then(data => displaySearchResult(data.data));
 }
-
+// show search result 
 const displaySearchResult = phones => {
     const searchREsult = document.getElementById('search-result');
     searchREsult.textContent = '';
@@ -36,7 +37,7 @@ const displaySearchResult = phones => {
     else{
         alert.style.display = 'none';
     }
-    phones.forEach(phone =>{
+    phones.slice(0, 20).forEach(phone =>{
         // console.log(phone);
         const div = document.createElement('div');
         div.classList.add('col');
@@ -54,7 +55,7 @@ const displaySearchResult = phones => {
     });
     toggleSpinner('none');
 }
-
+// show phone deatails 
 const loadPhoneDetail = phoneId => {
     // console.log(phoneID);
     const url = ` https://openapi.programming-hero.com/api/phone/${phoneId}`;
@@ -126,3 +127,4 @@ const displayPhoneDetail = phone => {
     }
     phoneDetails.appendChild(div);
 }
+
