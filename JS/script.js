@@ -9,15 +9,15 @@ const loadPhoneData = () => {
         alert2.style.display = 'block';
     }
     else{
-        // load data 
+        alert2.style.display = 'none';
+    }
+    // load data 
     const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`
     // console.log(url);
 
     fetch(url)
     .then(res => res.json())
     .then(data => displaySearchResult(data.data));
-    }
-    
 }
 
 const displaySearchResult = phones => {
@@ -63,6 +63,7 @@ const displayPhoneDetail = phone => {
     phoneDetails.textContent = '';
     const div = document.createElement('div');
     div.classList.add('card');
+    
     div.innerHTML = `
                 <img class="w-50 mx-auto pt-3" src="${phone.image}" class="card-img-top" alt="...">
                 <div class="card-body">
@@ -89,5 +90,33 @@ const displayPhoneDetail = phone => {
                 </div>
             </div>
     `;
+    if(!phone.releaseDate){
+        div.innerHTML = `
+                <img class="w-50 mx-auto pt-3" src="${phone.image}" class="card-img-top" alt="...">
+                <div class="card-body">
+                <h5 class="card-title fw-bold fs-4 text-primary">${phone.name}</h5>
+                <p class="card-text text-secondary"><span class="fw-bold">Brand: </span> ${ phone.brand}</p>
+                <p class="card-text text-success"><span class="fw-bold"></span>No Release Date Found</p>
+                <div>
+                    <h4 class="bg-dark text-white">Main Features</h4>
+                    <p class="card-text text-secondary"><span class="fw-bold">Storage: </span> ${ phone.mainFeatures.storage}</p>
+                    <p class="card-text text-secondary"><span class="fw-bold">Display Size: </span> ${ phone.mainFeatures.displaySize}</p>
+                    <p class="card-text text-secondary"><span class="fw-bold">Chipset: </span> ${ phone.mainFeatures.chipSet}</p>
+                    <p class="card-text text-secondary"><span class="fw-bold">Memory: </span> ${ phone.mainFeatures.memory}</p>
+                </div>
+                <h4 class="bg-dark text-white">Sensors</h4>
+                <p class="card-text text-secondary"><span class="fw-bold"></span> ${ phone.mainFeatures.sensors}</p>
+                <div>
+                    <h4 class="bg-dark text-white">Others</h4>
+                    <p class="card-text text-secondary"><span class="fw-bold">Bluetooth: </span> ${ phone.others.Bluetooth}</p>
+                    <p class="card-text text-secondary"><span class="fw-bold">GPS: </span> ${ phone.others.GPS}</p>
+                    <p class="card-text text-secondary"><span class="fw-bold">NFC: </span> ${ phone.others.NFC}</p>
+                    <p class="card-text text-secondary"><span class="fw-bold">Radio: </span> ${ phone.others.Radio}</p>
+                    <p class="card-text text-secondary"><span class="fw-bold">USB: </span> ${ phone.others.USB}</p>
+                    <p class="card-text text-secondary"><span class="fw-bold">WLAN: </span> ${ phone.others.WLAN}</p>
+                </div>
+            </div>
+    `;
+    }
     phoneDetails.appendChild(div);
 }
