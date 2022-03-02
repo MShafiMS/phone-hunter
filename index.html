@@ -20,6 +20,16 @@
             <input id="input-field" type="text" class="form-control border-2" placeholder="What Are You Looking For?" aria-label="Recipient's username" aria-describedby="button-addon2">
             <button onclick="loadPhoneData ()" class="btn btn-primary ms-2" type="button" id="button-addon2">Search</button>
         </div>
+        <div id="spinner" class="text-center">
+            <button class="btn btn-primary" type="button" disabled>
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                <span class="visually-hidden">Loading...</span>
+              </button>
+              <button class="btn btn-primary" type="button" disabled>
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                Loading...
+              </button>
+        </div>
     </header>
     <main class="container">
         <h3 id="alert" class="text-center text-danger alert">No Result Found!!!</h3>

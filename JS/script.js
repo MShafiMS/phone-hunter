@@ -1,6 +1,11 @@
+const toggleSpinner = displayStyle => {
+    document.getElementById('spinner').style.display = displayStyle;
+}
+
 const loadPhoneData = () => {
     const searchFeild = document.getElementById('input-field');
     const searchText = searchFeild.value;
+    toggleSpinner('block')
     const alert2 = document.getElementById('alert2');
     // console.log(searchText);
     // clear data 
@@ -46,7 +51,8 @@ const displaySearchResult = phones => {
         </div>
         `;
         searchREsult.appendChild(div);
-    })
+    });
+    toggleSpinner('none');
 }
 
 const loadPhoneDetail = phoneId => {
